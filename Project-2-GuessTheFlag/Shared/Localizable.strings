@@ -1,0 +1,25 @@
+/* 
+  Localizable.strings
+  GuessTheFlag
+
+  Created by Victor on 12/06/22.
+*/
+"Tap flag of" = "Selecione a bandeira da(o)";
+"Your score is" = "Sua pontuação é";
+"Score" = "Placar";
+"Correct" = "Correto!";
+"Wrong! That's the flag of" = "Errado! esta é a bandeira da(o)";
+"Game over" = "Fim de Jogo!";
+"Continue" = "Continuar";
+"Estonia" = "Estônia";
+"France" = "França";
+"Germany" = "Alemanha";
+"Ireland" = "Irlanda";
+"Italy" = "Itália";
+"Nigeria" = "Nigéria";
+"Poland" = "Polônia";
+"Russia" = "Rússia";
+"Spain" = "Espanha";
+"UK" = "Reino Unido";
+"US" = "Estados Unidos";
+
