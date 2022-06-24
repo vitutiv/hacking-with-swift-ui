@@ -45,7 +45,7 @@ struct ContentView: View {
                 }
                 Section {
                     Picker("Tip Percentage", selection: $tipPercentage) {
-                        ForEach(0 ..< 101, id: \.self) {
+                        ForEach(0 ... 100, id: \.self) {
                             Text($0, format: .percent)
                         }
                     }.pickerStyle(.automatic)
@@ -59,6 +59,7 @@ struct ContentView: View {
                 }
                 Section {
                     Text(totalAmount, format: currencyFormat)
+                        .foregroundColor(tipPercentage == 0 ? .red : .black)
                 }header: {
                     Text("Total amount")
                 }

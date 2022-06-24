@@ -7,6 +7,30 @@
 
 import SwiftUI
 
+struct Title: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .font(.largeTitle.bold())
+            .foregroundColor(.white)
+    }
+}
+
+struct FlagImage: View {
+    var flag: String
+    var body: some View {
+        Image(flag)
+            .renderingMode(.original)
+            .clipShape(RoundedRectangle(cornerRadius: 20))
+            .shadow(radius: 5)
+    }
+}
+
+extension View {
+    func titleStyle() -> some View {
+        modifier(Title())
+    }
+}
+
 struct ContentView: View {
     @State private var showingScore = false
     @State private var scoreTitle = ""
@@ -16,19 +40,18 @@ struct ContentView: View {
     @State private var gameOver = false
     @State private var score = 0
     @State private var correctAnswer = Int.random(in: 0...2)
+    
     var body: some View {
         ZStack {
-            AngularGradient(gradient: Gradient(colors: [.red, .yellow, .green, .teal, .blue, .purple, .red]), center: .center)
+            AngularGradient(gradient: Gradient(colors: [.blue, .teal, .teal, .blue]), center: .center)
                 .ignoresSafeArea()
-            Color.secondary.ignoresSafeArea()
             VStack {
                 VStack {
                     Spacer()
                     Text("Guess The Flag")
-                        .font(.largeTitle.bold())
-                        .foregroundColor(.white)
+                        .titleStyle()
                 }
-                
+
                 VStack(spacing: 15) {
                     Text(localized("Tap flag of"))
                         .foregroundStyle(.secondary)
@@ -39,10 +62,7 @@ struct ContentView: View {
                         Button {
                             flagTapped(number)
                         } label: {
-                            Image(countries[number])
-                                .renderingMode(.original)
-                                .clipShape(Capsule())
-                                .shadow(radius: 5)
+                            FlagImage(flag: countries[number])
                         }
                     }
                 }.frame(maxWidth: .infinity)
@@ -69,8 +89,8 @@ struct ContentView: View {
         }
      }
     
-    func localized(_ key: String) -> String {
-        NSLocalizedString(key, comment: "")
+    func localized(_ key: String, translate: Bool = true) -> String {
+        translate ? NSLocalizedString(key, comment: "") : key
     }
     
     func flagTapped(_ number: Int) {
